@@ -47,4 +47,5 @@ abstract class VoidClient : AstreaClient {
     override val userInfoEncryptedResponseAlgorithm: JweKeyManagementAlgorithm by lazy { doNotCall() }
     override val userInfoEncryptedResponseEncoding: JweContentEncodingAlgorithm by lazy { doNotCall() }
     override val userInfoSignedResponseAlgorithm: JwtSigningAlgorithm by lazy { doNotCall() }
+    override val tokenEndpointAuthenticationSigningAlgorithm: JwtSigningAlgorithm by lazy { doNotCall() }
 }

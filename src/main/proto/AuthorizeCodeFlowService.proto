@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.imulab.astrea.sdk.commons.flow.code";
+option java_outer_classname = "AuthorizeCodeFlowServiceProto";
+
+package flow;
+
+import "Failure.proto";
+
+service AuthorizeCodeFlowService {
+    rpc Authorize (CodeRequest) returns (CodeResponse);
+    rpc Exchange (TokenRequest) returns (TokenResponse);
+}
+
+message CodeRequest {
+    string id = 1;
+    int64 requestTime = 2;
+    repeated string responseTypes = 3;
+    string redirectUri = 4;
+    string state = 5;
+    repeated string scopes = 6;
+    Client client = 7;
+    Session session = 8;
+
+    message Client {
+        string id = 1;
+        repeated string responseTypes = 2;
+        repeated string redirectUris = 3;
+        repeated string scopes = 4;
+    }
+
+    message Session {
+        string subject = 1;
+        repeated string grantedScopes = 2;
+        int64 authenticationTime = 3;
+        repeated string acrValues = 4;
+        string nonce = 5;
+        string obfuscatedSubject = 6;
+    }
+}
+
+message CodeResponse {
+    bool success = 1;
+    Data data = 2;
+    op.Failure failure = 3;
+
+    message Data {
+        string code = 1;
+        repeated string scopes = 2;
+    }
+}
+
+message TokenRequest {
+    string id = 1;
+    int64 requestTime = 2;
+    string grantType = 3;
+    string code = 4;
+    string redirectUri = 5;
+    Client client = 6;
+
+    message Client {
+        string id = 1;
+        repeated string grantTypes = 2;
+        repeated string redirectUris = 3;
+        string jwks = 4;
+        string sectorIdentifierUri = 5;
+        string subjectType = 6;
+        string idTokenSignedResponseAlgorithm = 7;
+        string idTokenEncryptedResponseAlgorithm = 8;
+        string idTokenEncryptedResponseEncoding = 9;
+    }
+}
+
+message TokenResponse {
+    bool success = 1;
+    Data data = 2;
+    op.Failure failure = 3;
+
+    message Data {
+        string accessToken = 1;
+        string tokenType = 2;
+        int64 expiresIn = 3;
+        string refreshToken = 4;
+        string idToken = 5;
+    }
+}
