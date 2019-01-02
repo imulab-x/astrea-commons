@@ -36,7 +36,7 @@ class RemoteAuthorizeCodeFlowCodeLegService(
         .build()
 ) : AuthorizeCodeFlowCodeLegService {
 
-    private val logger = LoggerFactory.getLogger(AuthorizeCodeFlowCodeLegService::class.java)
+    private val logger = LoggerFactory.getLogger(RemoteAuthorizeCodeFlowCodeLegService::class.java)
 
     private val stub = AuthorizeCodeFlowServiceGrpc.newBlockingStub(channel)
     private val op = CircuitBreaker.decorateCheckedFunction<CodeRequest, CodeResponse>(
