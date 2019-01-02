@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.imulab.astrea.sdk.commons.client";
+option java_outer_classname = "ClientServiceProto";
+
+package client;
+
+import "Failure.proto";
+
+service ClientLookup {
+    rpc Find(ClientLookupRequest) returns (ClientLookupResponse) {}
+}
+
+message ClientLookupRequest {
+    string id = 1;
+}
+
+message ClientLookupResponse {
+    bool success = 1;
+    Data data = 2;
+    op.Failure failure = 3;
+    message Data {
+        string id = 1;
+        string name = 2;
+        string type = 3;
+        repeated string redirectUris = 4;
+        repeated string responseTypes = 5;
+        repeated string grantTypes = 6;
+        repeated string scopes = 7;
+        string applicationType = 8;
+        repeated string contacts = 9;
+        string logoUri = 10;
+        string clientUri = 11;
+        string policyUri = 12;
+        string tosUri = 13;
+        string jwks = 14;
+        string sectorIdentifierUri = 15;
+        string subjectType = 16;
+        string idTokenSignedResponseAlgorithm = 17;
+        string idTokenEncryptedResponseAlgorithm = 18;
+        string idTokenEncryptedResponseEncoding = 19;
+        string requestObjectSigningAlgorithm = 20;
+        string requestObjectEncryptionAlgorithm = 21;
+        string requestObjectEncryptionEncoding = 22;
+        string userInfoSignedResponseAlgorithm = 23;
+        string userInfoEncryptedResponseAlgorithm = 24;
+        string userInfoEncryptedResponseEncoding = 25;
+        string tokenEndpointAuthenticationMethod = 26;
+        string tokenEndpointAuthenticationSigningAlgorithm = 37;
+        int64 defaultMaxAge = 28;
+        bool requireAuthTime = 29;
+        repeated string defaultAcrValues = 30;
+        string initiateLoginUri = 31;
+        map<string, string> requests = 33;
+        string secret = 34;
+        int64 creationTime = 35;
+        int64 lastUpdateTime = 36;
+    }
+}
