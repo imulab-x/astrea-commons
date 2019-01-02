@@ -113,7 +113,7 @@ dependencyManagement {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    api("io.imulab.x:oidc-sdk:0.1.2")
+    api("io.imulab.x:oidc-sdk:0.2.0")
     implementation("com.google.protobuf:protobuf-java")
     implementation("io.grpc:grpc-stub")
     implementation("io.grpc:grpc-protobuf")
