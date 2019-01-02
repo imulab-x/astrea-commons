@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.imulab.astrea.sdk.commons.flow.implicit";
+option java_outer_classname = "ImplicitFlowServiceProto";
+
+package flow;
+
+import "Failure.proto";
+
+service ImplicitFlowService {
+    rpc Authorize (ImplicitTokenRequest) returns (ImplicitTokenResponse);
+}
+
+message ImplicitTokenRequest {
+    string id = 1;
+    int64 requestTime = 2;
+    repeated string responseTypes = 3;
+    string redirectUri = 4;
+    string state = 5;
+    repeated string scopes = 6;
+    Client client = 7;
+    Session session = 8;
+    string nonce = 9;
+
+    message Client {
+        string id = 1;
+        repeated string responseTypes = 2;
+        repeated string redirectUris = 3;
+        repeated string scopes = 4;
+        repeated string grantTypes = 5;
+        string idTokenSignedResponseAlgorithm = 6;
+        string idTokenEncryptedResponseAlgorithm = 7;
+        string idTokenEncryptedResponseEncoding = 8;
+        string jwks = 9;
+    }
+
+    message Session {
+        string subject = 1;
+        repeated string grantedScopes = 2;
+        int64 authenticationTime = 3;
+        repeated string acrValues = 4;
+        string nonce = 5;
+        string obfuscatedSubject = 6;
+    }
+}
+
+message ImplicitTokenResponse {
+    bool success = 1;
+    Data data = 2;
+    op.Failure failure = 3;
+
+    message Data {
+        string accessToken = 1;
+        string tokenType = 2;
+        int64 expiresIn = 3;
+        string idToken = 4;
+        repeated string scopes = 5;
+        string foo = 6;
+    }
+}
