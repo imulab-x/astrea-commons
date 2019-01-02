@@ -39,6 +39,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     }
 }
 
+tasks.register<Jar>("sourcesJar") {
+    from(sourceSets["main"].allSource)
+    classifier = "sources"
+}
+
 tasks.withType<Test>().all {
     useJUnitPlatform()
 }
@@ -69,6 +74,7 @@ publishing {
             artifactId = project.name
             version = project.version.toString()
             from(components["java"])
+            artifact(tasks["sourcesJar"])
             pom {
                 name.set(artifactId)
                 developers {
@@ -113,7 +119,6 @@ dependencies {
     implementation("io.grpc:grpc-protobuf")
     implementation("io.github.resilience4j:resilience4j-circuitbreaker")
     implementation("io.github.resilience4j:resilience4j-retry")
-    implementation("io.github.resilience4j:resilience4j-timelimiter")
     implementation("org.slf4j:slf4j-api")
     implementation("com.github.ben-manes.caffeine:caffeine")
 
