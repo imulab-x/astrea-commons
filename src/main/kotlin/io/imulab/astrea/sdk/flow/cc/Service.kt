@@ -7,7 +7,6 @@ import io.imulab.astrea.sdk.commons.flow.cc.ClientCredentialsFlowServiceGrpc
 import io.imulab.astrea.sdk.commons.flow.cc.ClientCredentialsTokenRequest
 import io.imulab.astrea.sdk.commons.flow.cc.ClientCredentialsTokenResponse
 import io.imulab.astrea.sdk.commons.toOAuthException
-import io.imulab.astrea.sdk.flow.implicit.ImplicitFlowService
 import io.imulab.astrea.sdk.oauth.error.TemporarilyUnavailable
 import io.imulab.astrea.sdk.oauth.request.OAuthAccessRequest
 import io.imulab.astrea.sdk.oauth.response.TokenEndpointResponse
