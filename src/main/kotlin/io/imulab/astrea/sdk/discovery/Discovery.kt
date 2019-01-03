@@ -60,3 +60,44 @@ fun DiscoveryResponse.toDiscovery(): Discovery = object : Discovery {
     override val userInfoSigningAlgorithmValuesSupported: List<String>
         get() = this@toDiscovery.userInfoSigningAlgorithmValuesSupportedList
 }
+
+/**
+ * Convert from [Discovery] to [DiscoveryResponse].
+ */
+fun Discovery.toDiscoveryResponse(): DiscoveryResponse =
+    DiscoveryResponse.newBuilder()
+        .setIssuer(this.issuer)
+        .setAuthorizationEndpoint(this.authorizationEndpoint)
+        .setTokenEndpoint(this.tokenEndpoint)
+        .setUserInfoEndpoint(this.userInfoEndpoint)
+        .setJwksUri(this.jwksUri)
+        .setRegistrationEndpoint(this.registrationEndpoint)
+        .addAllScopesSupported(this.scopesSupported)
+        .addAllResponseTypesSupported(this.responseTypesSupported)
+        .addAllResponseModeSupported(this.responseModeSupported)
+        .addAllGrantTypesSupported(this.grantTypesSupported)
+        .addAllAcrValuesSupported(this.acrValuesSupported)
+        .addAllSubjectTypesSupported(this.subjectTypesSupported)
+        .addAllIdTokenSigningAlgorithmValuesSupported(this.idTokenSigningAlgorithmValuesSupported)
+        .addAllIdTokenEncryptionAlgorithmValuesSupported(this.idTokenEncryptionAlgorithmValuesSupported)
+        .addAllIdTokenEncryptionEncodingValuesSupported(this.idTokenEncryptionEncodingValuesSupported)
+        .addAllUserInfoSigningAlgorithmValuesSupported(this.userInfoSigningAlgorithmValuesSupported)
+        .addAllUserInfoEncryptionAlgorithmValuesSupported(this.userInfoEncryptionAlgorithmValuesSupported)
+        .addAllUserInfoEncryptionEncodingValuesSupported(this.userInfoEncryptionEncodingValuesSupported)
+        .addAllRequestObjectSigningAlgorithmValuesSupported(this.requestObjectSigningAlgorithmValuesSupported)
+        .addAllRequestObjectEncryptionAlgorithmValuesSupported(this.requestObjectEncryptionAlgorithmValuesSupported)
+        .addAllRequestObjectEncryptionEncodingValuesSupported(this.requestObjectEncryptionEncodingValuesSupported)
+        .addAllTokenEndpointAuthenticationMethodsSupported(this.tokenEndpointAuthenticationMethodsSupported)
+        .addAllTokenEndpointAuthenticationSigningAlgorithmValuesSupported(this.tokenEndpointAuthenticationSigningAlgorithmValuesSupported)
+        .addAllDisplayValuesSupported(this.displayValuesSupported)
+        .addAllClaimTypesSupported(this.claimTypesSupported)
+        .addAllClaimsSupported(this.claimsSupported)
+        .setServiceDocumentation(this.serviceDocumentation)
+        .addAllClaimsLocalesSupported(this.claimsLocalesSupported)
+        .addAllUiLocalesSupported(this.uiLocalesSupported)
+        .setClaimsParameterSupported(this.claimsParameterSupported)
+        .setRequestParameterSupported(this.requestParameterSupported)
+        .setRequestUriParameterSupported(this.requestUriParameterSupported)
+        .setRequireRequestUriRegistration(this.requireRequestUriRegistration)
+        .setOpPolicyUri(this.opPolicyUri)
+        .build()
