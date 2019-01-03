@@ -3,11 +3,12 @@ package io.imulab.astrea.sdk.client
 import io.imulab.astrea.sdk.commons.client.ClientLookupResponse
 import io.imulab.astrea.sdk.commons.toLocalDateTime
 import io.imulab.astrea.sdk.commons.toUnixTimestamp
+import java.nio.charset.StandardCharsets
 
 /**
- * Convert from [DefaultClient] to [ClientLookupResponse].
+ * Convert from [AstreaClient] to [ClientLookupResponse].
  */
-fun DefaultClient.toClientLookupResponse(): ClientLookupResponse =
+fun AstreaClient.toClientLookupResponse(): ClientLookupResponse =
     ClientLookupResponse.newBuilder()
         .setSuccess(true)
         .setData(
@@ -15,9 +16,9 @@ fun DefaultClient.toClientLookupResponse(): ClientLookupResponse =
                 .setId(id)
                 .setCreationTime(creationTime.toUnixTimestamp())
                 .setLastUpdateTime(lastUpdateTime.toUnixTimestamp())
-                .setName(clientName)
-                .setSecret(clientSecret)
-                .setType(clientType)
+                .setName(name)
+                .setSecret(secret.toString(StandardCharsets.UTF_8))
+                .setType(type)
                 .addAllRedirectUris(redirectUris)
                 .addAllResponseTypes(responseTypes)
                 .addAllGrantTypes(grantTypes)
@@ -31,17 +32,17 @@ fun DefaultClient.toClientLookupResponse(): ClientLookupResponse =
                 .setJwks(jwks)
                 .setSectorIdentifierUri(sectorIdentifierUri)
                 .setSubjectType(subjectType)
-                .setIdTokenSignedResponseAlgorithm(idTokenSignedResponseAlg)
-                .setIdTokenEncryptedResponseAlgorithm(idTokenEncryptedResponseAlg)
-                .setIdTokenEncryptedResponseEncoding(idTokenEncryptedResponseEnc)
-                .setRequestObjectSigningAlgorithm(requestObjectSigningAlg)
-                .setRequestObjectEncryptionAlgorithm(requestObjectEncryptionAlg)
-                .setRequestObjectEncryptionEncoding(requestObjectEncryptionEnc)
-                .setUserInfoSignedResponseAlgorithm(userinfoSignedResponseAlg)
-                .setUserInfoEncryptedResponseAlgorithm(userinfoEncryptedResponseAlg)
-                .setUserInfoEncryptedResponseEncoding(userinfoEncryptedResponseEnc)
-                .setTokenEndpointAuthenticationMethod(tokenEndpointAuthMethod)
-                .setTokenEndpointAuthenticationSigningAlgorithm(tokenEndpointAuthenticationSigningAlg)
+                .setIdTokenSignedResponseAlgorithm(idTokenSignedResponseAlgorithm.spec)
+                .setIdTokenEncryptedResponseAlgorithm(idTokenEncryptedResponseAlgorithm.spec)
+                .setIdTokenEncryptedResponseEncoding(idTokenEncryptedResponseEncoding.spec)
+                .setRequestObjectSigningAlgorithm(requestObjectSigningAlgorithm.spec)
+                .setRequestObjectEncryptionAlgorithm(requestObjectEncryptionAlgorithm.spec)
+                .setRequestObjectEncryptionEncoding(requestObjectEncryptionEncoding.spec)
+                .setUserInfoSignedResponseAlgorithm(userInfoSignedResponseAlgorithm.spec)
+                .setUserInfoEncryptedResponseAlgorithm(userInfoEncryptedResponseAlgorithm.spec)
+                .setUserInfoEncryptedResponseEncoding(userInfoEncryptedResponseEncoding.spec)
+                .setTokenEndpointAuthenticationMethod(tokenEndpointAuthenticationMethod)
+                .setTokenEndpointAuthenticationSigningAlgorithm(tokenEndpointAuthenticationSigningAlgorithm.spec)
                 .setDefaultMaxAge(defaultMaxAge)
                 .setRequireAuthTime(requireAuthTime)
                 .addAllDefaultAcrValues(defaultAcrValues)

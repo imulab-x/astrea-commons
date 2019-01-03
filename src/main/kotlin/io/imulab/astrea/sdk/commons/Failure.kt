@@ -10,3 +10,11 @@ fun Failure.toOAuthException(): OAuthException =
         description = this.description,
         headers = this.headersMap
     )
+
+fun OAuthException.toFailure(): Failure =
+    Failure.newBuilder()
+        .setStatus(this.status)
+        .setError(this.error)
+        .setDescription(this.description)
+        .putAllHeaders(this.headers)
+        .build()
