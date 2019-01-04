@@ -22,7 +22,7 @@ buildScan {
 }
 
 group = "io.imulab.x"
-version = "0.2.3"
+version = "0.2.4"
 
 repositories {
     maven(url = "https://artifactory.imulab.io/artifactory/gradle-dev-local/")
