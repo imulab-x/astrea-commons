@@ -22,7 +22,7 @@ buildScan {
 }
 
 group = "io.imulab.x"
-version = "0.2.5"
+version = "0.2.6"
 
 repositories {
     maven(url = "https://artifactory.imulab.io/artifactory/gradle-dev-local/")
@@ -113,7 +113,7 @@ dependencyManagement {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    api("io.imulab.x:oidc-sdk:0.2.0")
+    api("io.imulab.x:oidc-sdk:0.2.1")
     implementation("com.google.protobuf:protobuf-java")
     implementation("io.grpc:grpc-stub")
     implementation("io.grpc:grpc-protobuf")
