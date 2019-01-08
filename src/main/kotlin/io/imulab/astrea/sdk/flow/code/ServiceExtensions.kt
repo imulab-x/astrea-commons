@@ -157,4 +157,5 @@ fun TokenResponse.toOidcTokenEndpointResponse(): OidcTokenEndpointResponse =
         r.tokenType = this.data.tokenType ?: ""
         r.expiresIn = this.data.expiresIn
         r.idToken = this.data.idToken ?: ""
+        r.refreshToken = this.data.refreshToken ?: ""
     }
