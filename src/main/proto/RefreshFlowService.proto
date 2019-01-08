@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.imulab.astrea.sdk.commons.flow.refresh";
+option java_outer_classname = "RefreshFlowServiceProto";
+
+package flow;
+
+import "Failure.proto";
+
+service RefreshFlowService {
+    rpc exchange (RefreshRequest) returns (RefreshResponse);
+}
+
+message RefreshRequest {
+    string id = 1;
+    int64 requestTime = 2;
+    repeated string grantTypes = 3;
+    string refreshToken = 4;
+    Client client = 5;
+
+    message Client {
+        string id = 1;
+        repeated string grantTypes = 2;
+        string jwks = 3;
+        string idTokenSignedResponseAlgorithm = 4;
+        string idTokenEncryptedResponseAlgorithm = 5;
+        string idTokenEncryptedResponseEncoding = 6;
+    }
+}
+
+message RefreshResponse {
+    bool success = 1;
+    Data data = 2;
+    op.Failure failure = 3;
+
+    message Data {
+        string accessToken = 1;
+        string tokenType = 2;
+        int64 expiresIn = 3;
+        string refreshToken = 4;
+        string idToken = 5;
+        repeated string scopes = 6;
+    }
+}
